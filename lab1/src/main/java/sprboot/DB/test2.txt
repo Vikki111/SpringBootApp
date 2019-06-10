@@ -1,0 +1,26 @@
+Create table artist 
+	(id SERIAL PRIMARY KEY,
+	artist_name char(14) UNIQUE);
+
+Create table album 
+	(id SERIAL PRIMARY KEY,
+	album_name char(14) UNIQUE,
+	album_year integer,
+	artist_id integer references artist ON DELETE CASCADE);
+
+Create table composition 
+	(id SERIAL PRIMARY KEY,
+	comp_name char(14),
+	album_id integer references album ON DELETE CASCADE);
+
+INSERT INTO artist (artist_name) VALUES ('Rammstein');
+INSERT INTO artist (artist_name) VALUES ('Skillet');
+INSERT INTO artist (artist_name) VALUES ('Linkin Park');
+
+INSERT INTO album (album_name, album_year, artist_id) VALUES ('Mutter', 1998, 1);
+INSERT INTO album (album_name, album_year, artist_id) VALUES ('Rise', 2014, 2);
+INSERT INTO album (album_name, album_year, artist_id) VALUES ('Meteora', 2003, 3);
+
+INSERT INTO composition (comp_name, album_id) VALUES ('Mutter', 1);
+INSERT INTO composition (comp_name, album_id) VALUES ('Rise', 2);
+INSERT INTO composition (comp_name, album_id) VALUES ('Hit the floor', 3);
